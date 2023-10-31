@@ -85,6 +85,11 @@ async function displayCart(){
 
 
 
+
+
+
+
+
 // Fonction change quantité
 function changeQuant(el, cart){
     let id = el.currentTarget.dataset.id
@@ -109,7 +114,6 @@ function changeQuant(el, cart){
 
 
 
-
 // Fonction Supprimer item
 function deleteItem(el, cart){
     let id = el.currentTarget.dataset.id
@@ -120,5 +124,3 @@ function deleteItem(el, cart){
     localStorage.setItem("cart", JSON.stringify(delCart))
     displayProducts()
 }
-
-
