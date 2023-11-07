@@ -1,77 +1,59 @@
-// // Verification du formulaire TEST 2
-// let form = document.querySelector('p #order')
-// form.addEventListener('click', (e) => {
-//     console.log(isFormOk)
+// Verification du formulaire
+let form = document.querySelector('#order')
+form.addEventListener('click', (e) => {
+    e.preventDefault()
+    let isFormOk = true
+
+    let regexName = /[^A-zÀ-ú]/
+    let regexAddress = /[^A-zÀ-ú0-9 ]/
+    let regexMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+    document.querySelector("#firstNameErrorMsg").innerHTML = null
+    document.querySelector("#lastNameErrorMsg").innerHTML = null
+    document.querySelector("#addressErrorMsg").innerHTML = null
+    document.querySelector("#cityErrorMsg").innerHTML = null
+    document.querySelector("#emailErrorMsg").innerHTML = null
+
+
+    // Récupérer les valeurs
+    let prenom = document.querySelector('#firstName').value
+    let nom = document.querySelector('#lastName').value
+    let adresse = document.querySelector('#address').value
+    let ville = document.querySelector('#city').value
+    let email = document.querySelector('#email').value
     
-//     // verification du prenom
-//     let prenom = document.querySelector('#firstName').value
-//     let nom = document.querySelector('#lastName').value
-//     let adresse = document.querySelector('#address').value
-//     let ville = document.querySelector('#city').value
-//     let email = document.querySelector('#email').value
-    
+    // verification du prenom
+    if(regexName.test(prenom) || prenom.length < 2){
+        document.querySelector("#firstNameErrorMsg").innerHTML = "Prénom invalide (minimum 2 caractères, pas de numéros)"
+        isFormOk = false
+    }
 
-//     let isFormOk = true
-    
-//     e.preventDefault()
-// })
+    // verification du nom
+    if (regexName.test(nom) || nom.length < 2) {
+        document.querySelector("#lastNameErrorMsg").innerHTML = "Nom invalide (minimum 2 caractères, pas de numéros)"
+        isFormOk = false
+    }
 
+    // verification de l'adresse
+    if (regexAddress.test(adresse) || adresse.length < 10) {
+        document.querySelector("#addressErrorMsg").innerHTML = "Adresse invalide (minimum 10 caractères)"
+        isFormOk = false
+    }
 
+    // verification de la ville
+    if (regexName.test(ville) || ville.length < 2) {
+        document.querySelector("#cityErrorMsg").innerHTML = "Ville invalide (minimum 2 caractères)"
+        isFormOk = false
+    }
 
+    // verification de la ville
+    if (regexMail.test(email) === false) {
+        document.querySelector("#emailErrorMsg").innerHTML = "Email invalide"
+        isFormOk = false
+    }
 
+    if(isFormOk){
 
-
-
-
-// // Verification du formulaire TEST 1
-// document.querySelector('#order').addEventListener('click', (e) => {
-    
-//     document.querySelector("#firstNameErrorMsg").innerHTML = null;
-//     document.querySelector("#lastNameErrorMsg").innerHTML = null;
-//     document.querySelector("#addressErrorMsg").innerHTML = null;
-//     document.querySelector("#cityErrorMsg").innerHTML = null;
-//     document.querySelector("#emailErrorMsg").innerHTML = null;
-    
-//     let regexName = /[^A-zÀ-ú]/;
-//     let regexmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    
-    
-//     // verification du prenom
-//     let prenom = document.querySelector('#firstName').value
-//     let prenomLenght = document.querySelector('#firstName').value.lenght
-//     console.log(prenom, prenomLenght)
-//     if(regexName.match(prenom) && prenom.Lenght < 2){
-//         document.querySelector("#firstNameErrorMsg").innerHTML = "Prénom invalide (minimum 2 caractères, pas de numéros)"
-//         isFormOk = false
-//     }
-
-//     // // verification du nom
-//     // let nom = document.querySelector('#lastName').value
-//     // if(nom.match(regexName)){
-//     //     document.querySelector("#lastNameErrorMsg").innerHTML = "Nom invalide (minimum 2 caractères, pas de numéros)"
-//     //     isFormOk = false
-//     // }
-
-//     // // verification de l'adresse
-//     // // let adresse = document.querySelector('#address').value
-//     // // if(adresse.leght > 10){
-//     // //     document.querySelector("#addressErrorMsg").innerHTML = "Adresse invalide (minimum 10 caratères)"
-//     // //     isFormOk = false
-//     // // }
-
-//     // // verification de la ville
-//     // let ville = document.querySelector('#city').value
-//     // if(ville.match(regexName)){
-//     //     document.querySelector("#cityErrorMsg").innerHTML = "Ville invalide (minimum 3 caractères, pas de numéros)"
-//     //     isFormOk = false
-//     // }
-
-//     // // verification de l'email
-//     // let mail = document.querySelector('#email').value
-//     // if(!mail.match(regexmail)){
-//     //     document.querySelector("#emailErrorMsg").innerHTML = "Email invalide"
-//     //     isFormOk = false
-//     // }
-
-//     e.preventDefault
-// })
+        
+    }
+})
