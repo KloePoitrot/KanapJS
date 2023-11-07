@@ -52,8 +52,43 @@ form.addEventListener('click', (e) => {
         isFormOk = false
     }
 
-    if(isFormOk){
+    // Validation de l'envoi
+    if(isFormOk == true){
+        const cart =JSON.parse(localStorage.getItem('cart'))
+        let cartID = []
+        cart.forEach(e => {
+            cartID.push(e.id)
+        });
+        const products = cartID
+        const contact = {
+            firstName: prenom,
+            lastName: nom,
+            address: adresse,
+            city: ville,
+            email: email,
+        }
 
-        
+        // Enregistrement de la commande
+        async function enregistreCommande(){
+            try {
+                const req = await fetch('http://localhost:3000/api/products/order', {
+                    method: 'POST',
+                    body: JSON.stringify({contact, products}),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const data =  await req.json();
+
+                // Envoi vers la page de confirmation
+                window.location.href = 'confirmation.html'
+                document.cookie = "orderId=" + data.orderId;
+                // localStorage.removeItem('cart')
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        enregistreCommande()
     }
 })
